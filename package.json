@@ -1,0 +1,81 @@
+{
+    "name": "q-formatter-dev",
+    "displayName": "q-formatter-dev",
+    "description": "format q code",
+    "version": "0.0.1",
+    "publisher": "chenduo",
+    "engines": {
+        "vscode": "^1.20.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/affenwiesel/q-formatter-vscode"
+    },
+    "categories": [
+        "Formatters"
+    ],
+    "keywords": [
+        "q"
+    ],
+    "activationEvents": [
+        "onLanguage:q"
+    ],
+    "main": "./extension",
+    "icon": "images/icon.png",
+    "contributes": {
+        "configuration": {
+            "title": "q-formatter configuration",
+            "type": "object",
+            "properties": {
+                "q-formatter.indentwidth": {
+                    "type": "integer",
+                    "default": 4,
+                    "description": "number of spaces used for indentation"
+                },
+                "q-formatter.separateBlocks": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "add newlines before and after blocks (for, if, etc.)"
+                },
+                "q-formatter.pythonPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "optional custom path to python executable (requires restarting vscode)"
+                },
+                "q-formatter.formatterPath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "optional custom path to q formatter (requires restarting vscode)"
+                }
+            }
+        },
+        "languages": [
+            {
+                "id": "q",
+                "aliases": [
+                    "Q"
+                ]
+            }
+        ],
+        "capabilities": {
+            "documentFormattingProvider": "true",
+            "documentRangeFormattingProvider": "true"
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    },
+    "__metadata": {
+        "id": "16f49f82-0071-4930-b6b5-b3e3ccd5fb0d",
+        "publisherDisplayName": "AffenWiesel",
+        "publisherId": "c3404b57-de97-47d7-8f81-b4955a94cc2e"
+    }
+}
