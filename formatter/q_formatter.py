@@ -9,7 +9,7 @@ class Formatter:
     ctrlstart_2 = r'(^|\s*)(switch)\s*(\W\S.*|\s*$)'
     ctrlcont = r'(^|\s*)(elseif|else|case|otherwise|catch)\s*(\W\S.*|\s*$)'
     ctrlend = r'(^|\s*)(end|endfunction|endif|endwhile|endfor|endswitch)(\s+\S.*|\s*$)'
-    linecomment = r'(^|\s*)%.*$'
+    linecomment = r'(^|\s*)//.*$'
     ellipsis = r'.*\.\.\.\s*$'
     importcmd = r'(^|\s*)(import .*)'
 
@@ -73,7 +73,7 @@ class Formatter:
             return (m.group(1), m.group(2), m.group(3))
 
         # comment
-        m = re.match(r'(^|.*\S)\s*(%.*)', part)
+        m = re.match(r'(^|.*\S)\s*(//.*)', part)
         if m:
             self.iscomment=1
             return (m.group(1), m.group(2), '')
@@ -121,8 +121,8 @@ class Formatter:
         if m:
             return (m.group(1) + ' ', m.group(2), m.group(3))
 
-        # dot-operator-assignmet (e.g. .+=)
-        m = re.match(r'(^|.*\S)\s*(\.)\s*(\+|\-|\*|/|\^)\s*(=)\s*(\S.*|$)', part)
+        # dot-operator-assignmet (e.g. .+:)
+        m = re.match(r'(^|.*\S)\s*(\.)\s*(\+|\-|\*|%|,|\^)\s*(:)\s*(\S.*|$)', part)
         if m:
             return (m.group(1) + ' ', m.group(2) + m.group(3) + m.group(4), ' ' + m.group(5))
 
@@ -137,7 +137,7 @@ class Formatter:
             return (m.group(1), m.group(2), m.group(3))
 
         # combined operator (e.g. +=, .+, etc.)
-        m = re.match(r'(^|.*\S)\s*(\.|\+|\-|\*|\\|/|=|<|>|\||\&|!|~|\^)\s*(<|>|=|\+|\-|\*|/|\&|\|)\s*(\S.*|$)', part)
+        m = re.match(r'(^|.*\S)\s*(\.|\+|\-|\*|\\|%|=|:|<|>|,|\||\&|!|~|\^)\s*(<|>|=|:|\+|\-|\*|%|\&|\|)\s*(\S.*|$)', part)
         if m:
             return (m.group(1) + ' ', m.group(2) + m.group(3), ' ' + m.group(4))
 
@@ -147,7 +147,7 @@ class Formatter:
             return (m.group(1), m.group(2), m.group(3))
 
         # single operator (e.g. +, -, etc.)
-        m = re.match(r'(^|.*\S)\s*(\+|\-|\*|\\|/|=|!|~|<|>|\||\&)\s*(\S.*|$)', part)
+        m = re.match(r'(^|.*\S)\s*(\+|\-|\*|\\|%|=|:|!|~|<|>|\||\&)\s*(\S.*|$)', part)
         if m:
             return (m.group(1) + ' ', m.group(2), ' ' + m.group(3))
 
