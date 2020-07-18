@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/affenwiesel/q-formatter-vscode"
+        "url": "https://https://github.com/cheduo/q-formatter-vscode"
     },
     "categories": [
         "Formatters"
@@ -74,8 +74,5 @@
         "@types/mocha": "^2.2.42"
     },
     "__metadata": {
-        "id": "16f49f82-0071-4930-b6b5-b3e3ccd5fb0d",
-        "publisherDisplayName": "AffenWiesel",
-        "publisherId": "c3404b57-de97-47d7-8f81-b4955a94cc2e"
     }
 }
